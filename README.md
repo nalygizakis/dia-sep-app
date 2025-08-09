@@ -1,4 +1,4 @@
-# Data-Independent Separation Application (Shiny)
+# Data-Independent Separation Application
 
 An R/Shiny application to split **data-independent** LC-MS full-scan files (`.mzML` / `.mzXML`) into separate **collision energy (CE) channels**, optionally removing calibrant/lock-mass scans and re-exporting to `.mzML`.
 
@@ -15,7 +15,7 @@ An R/Shiny application to split **data-independent** LC-MS full-scan files (`.mz
 
 - **R ≥ 4.2**
 - R packages:  
-  `shiny`, `shinyjs`, `peakTrAMS`
+  `shiny`, `shinyjs`, [`peakTrAMS`](https://github.com/nalygizakis/peakTrAMS)
 - **ProteoWizard** CLI (`msconvert`) installed and available in your PATH:
   - Windows: `msconvert.exe`
   - Ubuntu/Linux: `msconvert`
@@ -26,5 +26,53 @@ An R/Shiny application to split **data-independent** LC-MS full-scan files (`.mz
 
 ```bash
 # Clone this repository
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/nalygizakis/dia-sep-app.git
+cd dia-sep-app
+```
+
+Install R dependencies:
+
+```r
+install.packages(c("shiny", "shinyjs"))
+# Install peakTrAMS from GitHub if not already available
+remotes::install_github("nalygizakis/peakTrAMS")
+```
+
+Ensure `msconvert` works from your terminal:
+
+```bash
+msconvert --version
+```
+
+## Usage
+
+From the repository folder, run:
+
+```bash
+Rscript App.R
+```
+
+or in R:
+
+```r
+library(shiny)
+runApp(".")
+```
+
+1. Upload a `.mzML` or `.mzXML` file.
+2. Set **Intensity cutoff** (see in-app guidance).
+3. (Optional) Enter **calibrant/lock-mass scans** (comma-separated).
+4. If CE information is **present**: click **Submit Processing**.  
+   If **absent**: specify CE channels and scan indices manually.
+5. Download processed `.mzML` files for each CE channel.
+
+## License
+
+MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Citation
+
+If you use this app in a scientific work, please cite:
+
+- Chambers, M. C., et al. (2012). *A cross-platform toolkit for mass spectrometry and proteomics.* Nature Biotechnology, 30(10), 918–920. (ProteoWizard)
+- [peakTrAMS R package](https://github.com/nalygizakis/peakTrAMS)
