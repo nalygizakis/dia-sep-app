@@ -1,6 +1,6 @@
-# Data-Independent Separation Application
+# Data-Independent Separation Web Application
 
-An R/Shiny application to split **data-independent** LC-MS full-scan files (`.mzML` / `.mzXML`) into separate **collision energy (CE) channels**, optionally removing calibrant/lock-mass scans and re-exporting to `.mzML`.
+A web application to split **data-independent** LC-MS full-scan files (`.mzML` / `.mzXML`) into separate **collision energy (CE) channels**, optionally removing calibrant/lock-mass scans and re-exporting to `.mzML`.
 
 ## Features
 
@@ -15,11 +15,11 @@ An R/Shiny application to split **data-independent** LC-MS full-scan files (`.mz
 
 - **R ≥ 4.2**
 - R packages:  
-  `shiny`, `shinyjs`, [`peakTrAMS`](https://github.com/nalygizakis/peakTrAMS)
+  `shiny`, `shinyjs`, and [`peakTrAMS`](https://github.com/nalygizakis/peakTrAMS)
 - **ProteoWizard** CLI (`msconvert`) installed and available in your PATH:
-  - Windows: `msconvert.exe`
-  - Ubuntu/Linux: `msconvert`
-- Java installed (the app uses `options(java.parameters = "-Xmx16384m")`)
+  - Windows: `msconvert.exe` and 'R.exe'
+  - Ubuntu/Linux: `msconvert` and 'R'
+- Java installed (the app uses `options(java.parameters = "-Xmx16384m")`) but this can be readjusted by the user.
 - All CSS/JS assets available in the `assets/` folder (see below).
 
 ## Installation
@@ -34,8 +34,14 @@ Install R dependencies:
 
 ```r
 install.packages(c("shiny", "shinyjs"))
-# Install peakTrAMS from GitHub if not already available
-remotes::install_github("nalygizakis/peakTrAMS")
+
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("mzR")
+BiocManager::install("xcms")
+install.packages("devtools")
+install_github("nalygizakis/peakTrAMS")
 ```
 
 Ensure `msconvert` works from your terminal:
@@ -74,5 +80,4 @@ MIT License. See the [LICENSE](LICENSE) file for details.
 
 If you use this app in a scientific work, please cite:
 
-- Chambers, M. C., et al. (2012). *A cross-platform toolkit for mass spectrometry and proteomics.* Nature Biotechnology, 30(10), 918–920. (ProteoWizard)
-- [peakTrAMS R package](https://github.com/nalygizakis/peakTrAMS)
+- Alygizakis, N. (2025). *Data-Independent Separation Web Application.* Link: https://github.com/nalygizakis/dia-sep-app
