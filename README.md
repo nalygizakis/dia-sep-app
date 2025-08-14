@@ -23,13 +23,6 @@ A web application to split **data-independent** LC-MS full-scan files (`.mzML` /
 - All CSS/JS assets available in the `assets/` folder (see below).
 
 ## Installation
-
-```bash
-# Clone this repository
-git clone https://github.com/nalygizakis/dia-sep-app.git
-cd dia-sep-app
-```
-
 Install R dependencies:
 
 ```r
@@ -44,25 +37,19 @@ install.packages("devtools")
 install_github("nalygizakis/peakTrAMS")
 ```
 
-Ensure `msconvert` works from your terminal:
+Ensure `msconvert` and `R` works from your terminal:
 
 ```bash
-msconvert --version
+# Clone this repository
+git clone https://github.com/nalygizakis/dia-sep-app.git
+cd dia-sep-app
+
 ```
-
 ## Usage
-
 From the repository folder, run:
 
 ```bash
 Rscript App.R
-```
-
-or in R:
-
-```r
-library(shiny)
-runApp(".")
 ```
 
 1. Upload a `.mzML` or `.mzXML` file.
